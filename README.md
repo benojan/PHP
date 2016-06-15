@@ -1,3 +1,4 @@
+[Rewrite配置](../../wiki/apache配置rewrite模块)
 # PHP
 ##基本
 sudo apt-get install apache2 php5-mysql libapache2-mod-php5 mysql-server
