@@ -1,5 +1,3 @@
-[Rewrite配置](../../wiki/apache配置rewrite模块)
-# PHP
 ##基本
 sudo apt-get install apache2 php5-mysql libapache2-mod-php5 mysql-server
 
@@ -15,3 +13,6 @@ sudo apt-get install php5-cli
 
 ##安装curl
 sudo apt-get install curl
+
+##常用配置
+[php rewrite模块配置](../../wiki/apache配置rewrite模块)
