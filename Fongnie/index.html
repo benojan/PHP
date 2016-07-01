@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset='utf8' />
+    <!-- Bootstrap -->
+    <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/search.css" rel="stylesheet">
+    <title>台州字典全方位查询</title>
+</head>
+<body>
+	<div class='container'>
+		<div class='search'>
+			<form role='form' action='{:U('Index/index')}' method='get'>
+				<div class='form-group'>
+					<input name='hanzy' type='text' class='form-control' value='{$hanzy}' placeholder='输入要查询的汉字'/>
+				</div>
+				<button type='submit' class='btn btn-info search-btn'>开始查询</button>
+			</form>
+		</div>
+		<div>
+			<if condition='$tsize neq 0'>
+				<div class='row'>
+					<table class='table'>
+						<h3>台州方言</h3>
+						<thead>
+							<tr>
+								<td>单字</td>
+								<td>古体</td>
+								<td>发音</td>
+								<td>反切</td>
+								<td>笔画</td>
+							</tr>
+						</thread>
+						<tbody class='tbody'>
+							<foreach name='tdict' item='titem'>
+								<tr>
+									<td><a href='?hanzy={$titem.zy}'>{$titem.zy}</a></td>
+									<td><a href='?hanzy={$titem.cin}'>{$titem.cin}</a></td>
+									<td><a href='?hanzy={$titem.sin}{$titem.yvn}'>{$titem.sin}{$titem.yvn}</a> [{$titem.ipa}<sup>{$titem.diao}</sup>]</td>
+									<td><a href='?hanzy={$titem.faechieh}'>{$titem.faechieh}</a></td>
+									<td>{$titem.stroke}</td>
+								</tr>
+							</foreach>
+						</tbody>
+					</table>
+				</div>
+			</if>
+			<if condition='$ksize neq 0'>
+			<div class='row'>
+				<table class='table'>
+					<h3>广韵</h3>
+					<thead>
+						<tr>
+							<td>字</td>
+							<td>声</td>
+							<td>韵</td>
+							<td>调</td>
+							<td>参考台音</td>
+							<td>反切</td>
+							<td>呼</td>
+							<td>等</td>
+						</tr>
+					</thead>
+					<tbody>
+						<foreach name='kdict' item='kitem'>
+						<tr>
+							<td>
+								<foreach name='kitem.hanzy' item='hanzy'>
+								<a href='?hanzy={$hanzy}'>{$hanzy}</a>&nbsp;
+								</foreach>
+							</td>
+							<td>{$kitem.sin}</td>
+							<td>{$kitem.yvnbu}</td>
+							<td>{$kitem.diao}</td>
+							<td>
+								<foreach name='kitem.phinin' item='phinin'>
+								<a href='?hanzy={$phinin}'>{$phinin}</a>&nbsp;
+								</foreach>
+							</td>
+							<td><a href='?hanzy={$kitem.fanchiah}'>{$kitem.fanchiah}</td>
+							<td>{$kitem.hu}</td>
+							<td>{$kitem.teng}</td>
+						</tr>
+						</foreach>
+					</tbody>
+				</table>
+			</div>
+			</if>
+			<if condition='$khsize neq 0'>
+			<div class='row'>
+				<table class='table'>
+					<h3>康熙</h3>
+					<thead>
+						<tr>
+							<td>字</td>
+							<td>繁</td>
+							<td>内容</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{$khdict.hanzy}</td>
+							<td><a href='?hanzy={$khdict.van}'>{$khdict.van}</a></td>
+							<td>{$khdict.neiyung}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</if>
+		</div>
+	</div>
+
+	<!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script> 　-->
+    <script>
+    	$(function(){
+    		$(".edit").click(function(){
+    			$id = $(this).attr('name');
+    			window.href = '{:U('edit')}';
+    		});
+    	});
+    </script>
+
+</body>
+</html>
